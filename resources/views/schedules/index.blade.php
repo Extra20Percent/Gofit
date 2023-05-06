@@ -1,10 +1,43 @@
 @extends('layout.FullPage')
+<style>
+    #layout {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        height: 95%;
+    }
+
+    #schedulelist tr:nth-child(even){background-color:  #ffdf80;}
+
+    #schedulelist tr:nth-child(odd){background-color: #ffdf80;}
+
+    #schedulelist th, #schedulelist td{
+        border: 1px solid white;
+        padding: 8px;
+    }
+
+    #schedulelist {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    #schedulelist th{
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: rgb(44, 44, 44);
+        color: white;
+    }
+</style>
  
 @section('content')
     <div class="row">
+    <h1 style="text-align: center; color:white;">Jadwal</h1>
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>jadwal</h2>
+            <div class="pull-left">   
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('schedules.create') }}"> Create New schedule</a>
@@ -20,7 +53,7 @@
     
     
    
-    <table class="table table-bordered">
+    <table id="schedulelist">
         <tr>
             <th>No</th>
             <th>Tanggal</th>
