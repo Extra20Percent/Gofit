@@ -111,7 +111,7 @@ class MemberController extends Controller
         return redirect('/members');
     }
 
-    public function getPrintCard($id)
+    public function getPrintMembership($id)
     {
         $member = User::where(['role' => 'member', 'id' => $id])->first();
         $membership = Membership::where(['user_id' => $id])->first();

@@ -74,7 +74,7 @@
                             <td>{{ $membership->id }}</td>
                             <td>{{ $membership->expired_on }}</td>
                             <td style="justify-content: space-evenly;">
-                                <a href="/members/print/{{ $member->id }}" class="btn btn-outline-dark">Print</a>
+                                <a href="/members/printMembership/{{ $member->id }}" class="btn btn-outline-dark">Print</a>
                             </td>
                             @php
                                 $hasActiveMembership = true;
