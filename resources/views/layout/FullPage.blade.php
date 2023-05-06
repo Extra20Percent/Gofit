@@ -43,7 +43,7 @@
 
                     @if ($user->role == "mo" || $user->role == "admin")
                         <li class="nav-item">
-                            <a class="nav-link text-black" href="/schedule">Jadwal</a>
+                            <a class="nav-link text-black" href="/schedules">Jadwal</a>
                         </li>
                     @endif
 

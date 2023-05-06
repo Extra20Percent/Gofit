@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('schedule', function (Blueprint $table) {
             $table->id();
             $table->dateTime('schedule_for');
-            $table->dateTime('finished_on');
+            $table->string('Nama_Kegiatan');
             $table->string('name');
 
-            $table->unsignedBigInteger('instructor_id');
-            $table->foreign('instructor_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('instructor_id');
+            // $table->foreign('instructor_id')->references('id')->on('users');
+            $table->string('instructor_id')->nullable();
+            $table->timestamps();
         });
     }
 

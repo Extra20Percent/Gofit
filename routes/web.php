@@ -5,7 +5,9 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route; 
+use App\Http\Controllers\FullCalenderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,7 @@ Route::post('/login', [UserController::class, 'postLogin']);
 Route::get('/logout', [UserController::class, 'logout']);
 Route::get('/dashboard', [HomeController:: class, 'getDashboard']);
 Route::middleware(['auth'])->group(function() {
+    
 
 });
 
@@ -49,14 +52,19 @@ Route::middleware('auth.admin')->group(function() {
     Route::get('/instructors/delete/{id}', [InstructorController::class, 'getDeleteInstructors']);
     Route::get('/instructors/update/{id}', [InstructorController::class, 'getUpdateInstructors']);
     Route::post('/instructors/update/{id}', [InstructorController::class, 'postUpdateInstructors']);
+    Route::get('fullcalender', [FullCalenderController::class, 'index']);
+    Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
+    
+    Route::resource('/schedules', ScheduleController::class);
 });
 
 Route::middleware('auth.mo')->group(function() {
-    Route::get('/schedule', [HomeController::class, 'getSchedule']);
+    Route::get('/schedules', [HomeController::class, 'getSchedule']);
     Route::get('/schedule/add', [ScheduleController::class, 'getAddSchedule']);
     Route::post('/schedule/add', [ScheduleController::class, 'postAddSchedule']);
     Route::get('/schedule/delete/{id}', [ScheduleController::class, 'getDeleteSchedule']);
     Route::get('/schedule/update/{id}', [ScheduleController::class, 'getUpdateSchedule']);
     Route::post('/schedule/update/{id}', [ScheduleController::class, 'postUpdateSchedule']);
     Route::post('/schedule/check/add', [ScheduleController::class, 'postCheckAvailibilty']);
+    Route::resource('/schedules', ScheduleController::class);
 });
