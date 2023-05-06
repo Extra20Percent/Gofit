@@ -10,11 +10,13 @@ use Illuminate\Support\Facades\Cookie;
 class UserController extends Controller
 {
 
-    public function getLogin() {
+    public function getLogin()
+    {
         return view('login');
     }
 
-    public function postLogin(Request $request) {
+    public function postLogin(Request $request)
+    {
 
         $request->validate([
             'email' => 'required|email|max:255',
@@ -42,7 +44,8 @@ class UserController extends Controller
         return redirect('/dashboard');
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::logout();
         return redirect('/login');
     }
