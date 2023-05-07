@@ -47,6 +47,12 @@
                         </li>
                     @endif
 
+                    @if ($user->role == "mo" || $user->role == "admin")
+                        <li class="nav-item">
+                            <a class="nav-link text-black" href="/moneys">Deposit</a>
+                        </li>
+                    @endif
+
                     
                 </ul>
             </div>

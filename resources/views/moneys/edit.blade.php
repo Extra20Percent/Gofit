@@ -1,13 +1,13 @@
-@extends('schedules.layout')
+@extends('moneys.layout')
    
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit schedule</h2>
+                <h2>Edit Deposit</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('schedules.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('moneys.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -23,35 +23,30 @@
         </div>
     @endif
   
-    <form action="{{ route('schedules.update',$schedule->id) }}" method="POST">
+    <form action="{{ route('moneys.update',$money->id) }}" method="POST">
         @csrf
         @method('PUT')
    
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>schedule_for:</strong>
-                    <input type="text" name="schedule_for" value="{{ $schedule->schedule_for }}" class="form-control" placeholder="schedule_for">
+                    <strong>Nama Member:</strong>
+                    <input type="text" name="name" value="{{ $money->name }}" class="form-control" placeholder="name">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Nama Kegiatan:</strong>
-                    <input type="text" name="Nama_Kegiatan" value="{{ $schedule->Nama_Kegiatan }}" class="form-control" placeholder="Nama_Kegiatan">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Nama:</strong>
-                    <textarea class="form-control" style="height:150px" name="name" placeholder="name">{{ $schedule->name }}</textarea>
+                    <strong>Deposit:</strong>
+                    <input type="text" name="money" value="{{ $money->money }}" class="form-control" placeholder="money">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Detail:</strong>
-                    <textarea class="form-control" style="height:150px" name="instructor_id" placeholder="Detail">{{ $schedule->instructor_id }}</textarea>
+                    <input type="text" name="detail" value="{{ $money->detail }}" class="form-control" placeholder="detail">
                 </div>
             </div>
+           
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>

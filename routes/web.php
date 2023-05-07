@@ -7,6 +7,9 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route; 
 use App\Http\Controllers\FullCalenderController;
+use App\Http\Controllers\MoneyController;
+  
+
 
 
 /*
@@ -54,7 +57,7 @@ Route::middleware('auth.admin')->group(function() {
     Route::post('/instructors/update/{id}', [InstructorController::class, 'postUpdateInstructors']);
     Route::get('fullcalender', [FullCalenderController::class, 'index']);
     Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
-    
+    Route::resource('/moneys', MoneyController::class);
     Route::resource('/schedules', ScheduleController::class);
 });
 
