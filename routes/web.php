@@ -5,10 +5,10 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route; 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\MoneyController;
-  
+
 
 
 
@@ -28,15 +28,14 @@ Route::get('/', [HomeController::class, 'home']);
 Route::get('/login', [UserController::class, 'getLogin'])->name('login');
 Route::post('/login', [UserController::class, 'postLogin']);
 Route::get('/logout', [UserController::class, 'logout']);
-Route::get('/dashboard', [HomeController:: class, 'getDashboard']);
-Route::middleware(['auth'])->group(function() {
-    
-
+Route::get('/dashboard', [HomeController::class, 'getDashboard']);
+Route::middleware(['auth'])->group(function () {
 });
 
-Route::middleware('auth.kasir')->group(function() {
+Route::middleware('auth.kasir')->group(function () {
     Route::get('/members', [HomeController::class, 'getMembers']);
     Route::get('/members/print/{id}', [MemberController::class, 'getPrintCard']);
+    Route::get('/members/printMembership/{id}', [MemberController::class, 'getPrintCard']);
     Route::get('/members/add', [MemberController::class, 'getAddMembers']);
     Route::post('/members/add', [MemberController::class, 'postAddMembers']);
     Route::get('/members/delete/{id}', [MemberController::class, 'getDeleteMembers']);
@@ -48,7 +47,7 @@ Route::middleware('auth.kasir')->group(function() {
 });
 
 
-Route::middleware('auth.admin')->group(function() {
+Route::middleware('auth.admin')->group(function () {
     Route::get('/instructors', [HomeController::class, 'getInstructors']);
     Route::get('/instructors/add', [InstructorController::class, 'getAddInstructors']);
     Route::post('/instructors/add', [InstructorController::class, 'postAddInstructors']);
@@ -61,7 +60,7 @@ Route::middleware('auth.admin')->group(function() {
     Route::resource('/schedules', ScheduleController::class);
 });
 
-Route::middleware('auth.mo')->group(function() {
+Route::middleware('auth.mo')->group(function () {
     Route::get('/schedules', [HomeController::class, 'getSchedule']);
     Route::get('/schedule/add', [ScheduleController::class, 'getAddSchedule']);
     Route::post('/schedule/add', [ScheduleController::class, 'postAddSchedule']);

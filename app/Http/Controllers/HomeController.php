@@ -11,16 +11,18 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function home () {
-        
+    public function home()
+    {
+
         return view('home', []);
     }
 
-    public function getDashboard() {
+    public function getDashboard()
+    {
         $totalInstructor = User::where(['role' => 'instructor'])->get();
         $totalMember = User::where(['role' => 'member'])->get();
         $totalSchedule = Schedule::get();
-        
+
         return view('dashboard', [
             'user' => Auth::user(),
             'totalInstructor' => $totalInstructor->count(),
@@ -29,11 +31,12 @@ class HomeController extends Controller
         ]);
     }
 
-    public function getInstructors(Request $request) {
+    public function getInstructors(Request $request)
+    {
         $instructor = User::where(['role' => 'instructor'])->get();
         if (request('search')) {
-            $instructor = User::where('username','like','%' . request('search') . '%')
-                            ->where('role', 'like', 'instructor')->get();
+            $instructor = User::where('username', 'like', '%' . request('search') . '%')
+                ->where('role', 'like', 'instructor')->get();
         }
 
         return view('instructors', [
@@ -42,27 +45,30 @@ class HomeController extends Controller
         ]);
     }
 
-    public function getMembers() {
+    public function getMembers()
+    {
         $members = User::where(['role' => 'member'])->get();
         if (request('search')) {
-            $members = User::where('username','like','%' . request('search') . '%')
-                            ->where('role', 'like', 'member')->get();
+            $members = User::where('username', 'like', '%' . request('search') . '%')
+                ->where('role', 'like', 'member')->get();
         }
         $membership = Membership::get();
+        $countMembership = Membership::count();
 
         return view('members', [
             'user' => Auth::user(),
             'members' => $members,
             'memberships' => $membership,
+            'countMembership' => $countMembership,
         ]);
     }
 
-    public function getSchedule() {
+    public function getSchedule()
+    {
         return view('schedule', [
-            'user' =>Auth::user(),
+            'user' => Auth::user(),
             'schedule' => Schedule::get(),
             'instructors' => User::where(['role' => 'instructor'])->get(),
         ]);
     }
-
 }
